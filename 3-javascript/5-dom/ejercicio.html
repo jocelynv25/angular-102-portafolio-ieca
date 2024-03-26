@@ -7,10 +7,11 @@
 <body>
     <div style="display: flex">
         <input type="text" id="inputEncabezado" placeholder="Ingresa el nuevo encabezado"
-        style="width:70%;margin-bottom:10px" />
+            style="width:70%;margin-bottom:10px" />
     </div>
     <div style="display: flex">
-        <button id="btnActualizacion" onClick="modificarEncabezado()" style="margin-right: 10px">Establecer Encabezado</button>
+        <button id="btnActualizacion" onClick="modificarEncabezado()" style="margin-right: 10px">Establecer
+            Encabezado</button>
         <button id="btnUndo" disabled>Encabezado Anterior</button>
     </div>
     <h1 id="encabezado">...</h1>
@@ -38,9 +39,37 @@
         const tituloEncabezado = document.getElementById('encabezado')
         const inputEncabezado = document.getElementById('inputEncabezado')
 
+        let encabezados = []
+
         function modificarEncabezado() {
-            /* Tu código aquí */
+            let nuevoEnc = inputEncabezado.value.trim()
+
+            if (nuevoEnc !== "") {
+                tituloEncabezado.textContent = nuevoEnc
+                encabezados.push(nuevoEnc)
+
+                if (encabezados.length >= 2) {
+                    btnUndo.disabled = false
+                }
+
+                inputEncabezado.value = ""
+            } else {
+                alert("¡Escribe el encabezado!")
+            }
         }
+
+        btnUndo.addEventListener("click", function () {
+            encabezados.pop()
+
+            let previousTitle = encabezados[encabezados.length - 1]
+
+            tituloEncabezado.textContent = previousTitle
+
+            if (encabezados.length < 2) {
+                btnUndo.disabled = true
+            }
+        });
+
     </script>
 </body>
 
