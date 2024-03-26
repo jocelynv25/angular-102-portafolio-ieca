@@ -23,7 +23,7 @@ const juegos = {
     sol: 1,
     tirarMoneda: function () {
         let moneda = Math.floor(Math.random() * 2)
-        print(moneda === this.aguila ? "Cae águila 🦅" : "Cae sol 🌞")
+        console.log(moneda === this.aguila ? "Cae águila 🦅" : "Cae sol 🌞")
     }
 }
 
